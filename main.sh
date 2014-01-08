@@ -1,12 +1,5 @@
 #!/bin/bash
 
-cat ~/.bash_history | tr ';' '\n' > /tmp/shell_history
+MYSHELL=$(sed -n "/$USER/s/.*\///p" /etc/passwd)
+sed -f filter.sed ~/.${MYSHELL}_history > /tmp/input_file
 ./main.r
-#history
-#s/  / /g;
-#s/^ *[0-9]* //g;
-#s/ \?[;|] \?/\n/g;
-#s/".*"//g;
-#s/http..*//g;
-#s/ --\?[[:alnum:]].*//g;
-#s/[^ ] .*.\(pdf\|gif\|jpg\|jpeg\|mp3\|txt\|py\)//g
